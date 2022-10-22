@@ -1,0 +1,17 @@
+---
+- name: Install EPEL repository (RHEL)
+  yum:
+    name: epel-release
+    state: present
+    update_cache: yes
+  when: epel_repo
+  tags: packages
+
+- name: Install packages (RHEL)
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ packages_list_yum }}"
+  tags: packages
+...

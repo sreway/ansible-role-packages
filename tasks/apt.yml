@@ -1,0 +1,15 @@
+---
+- name: Installing https transport for apt
+  apt:
+    name: apt-transport-https
+    state: present
+  tags: packages
+
+- name: Install packages (Debian)
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ packages_list_apt }}"
+  tags: packages
+...
